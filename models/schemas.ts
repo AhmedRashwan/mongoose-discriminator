@@ -1,4 +1,5 @@
 import { Model, Schema, SchemaType } from "mongoose";
+import { CustomProduct } from "./products";
 import {
   ProductSimpleDocument,
   ProductCategoryType,
@@ -77,8 +78,23 @@ export const simpleProductSchema = new Schema<ProductSimpleDocument>(
     image: { type:String },
     additionalFields:[singleProductCategorySchema]
   }); 
-const attachArray:SchemaType=CustomProductCategoryShema.path("additionalFields")
 
+const attachArray:any=CustomProductCategoryShema.path("additionalFields")
+
+const single=attachArray.discriminator("SingleProductCategoryShema",
+singleProductCategorySchema,
+"SingleProductCategoryShema")
+const a=new CustomProduct({
+  categories:[{
+    name:"t",
+    isRequired:true,
+    additionalFields:new single({
+      name:"ahmed",
+      isRequired:true
+    })
+  }]
+})
+a.save()
 export const customProductSchema = new Schema<ProductCustomDocument>(
   {
     _id: { type: String, required: true },

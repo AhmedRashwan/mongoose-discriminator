@@ -1,5 +1,5 @@
 import { CustomProduct, SimpleProduct } from "./models/products";
-
+import "./test"
 const mongoose = require('mongoose')
 const data = 
 main().then(()=>{
@@ -27,32 +27,32 @@ main().then(()=>{
 //     collectionIds: ["simple"]
 // });
 
-let customProduct = new CustomProduct({
-    _id:10,
-    type:"custom",
-    storeId: "0",
-    title: "custom product title",
-    descriptionHtml: "custom product description",
-    options:"custom product options",
-    media:"custom product media",
-    handle: "custom product",
-    isArchived:true,
-    isVisible:true,
-    isDeleted: true,
-    locale: "custom",
-    createdAt: "2005-12-12",
-    updatedAt: "2005-12-12",
-    shortDescription: "simple",
-    collectionIds: ["custom"],
-    categories:[{
-        name: "category name",
-        type: "q",
-        isRequired: true,
-        image:"",
-        settings:{},
-        products: [{ variant_id:"" }]
-    }]
-});
+// let customProduct = new CustomProduct({
+//     _id:10,
+//     type:"custom",
+//     storeId: "0",
+//     title: "custom product title",
+//     descriptionHtml: "custom product description",
+//     options:"custom product options",
+//     media:"custom product media",
+//     handle: "custom product",
+//     isArchived:true,
+//     isVisible:true,
+//     isDeleted: true,
+//     locale: "custom",
+//     createdAt: "2005-12-12",
+//     updatedAt: "2005-12-12",
+//     shortDescription: "simple",
+//     collectionIds: ["custom"],
+//     categories:[{
+//         name: "category name",
+//         type: "q",
+//         isRequired: true,
+//         image:"",
+//         settings:{},
+//         products: [{ variant_id:"" }]
+//     }]
+// });
 
 // simpleProduct.save().then(()=>{
 // console.log("simple product saved succesfully");
@@ -62,12 +62,12 @@ let customProduct = new CustomProduct({
 // console.log("ERROR :- ",err);
 // })
 
-customProduct.save().then(()=>{
-    console.log("custom product saved succesfully");
-    })
-    .catch((error:any)=>{
-    console.log("ERROR :- ",error);
-    })
+// customProduct.save().then(()=>{
+//     console.log("custom product saved succesfully");
+//     })
+//     .catch((error:any)=>{
+//     console.log("ERROR :- ",error);
+//     })
 
 // const options = {discriminatorKey:"Product_type"}
 // enum ProductType{
@@ -137,5 +137,5 @@ customProduct.save().then(()=>{
 
 
 async function main(){
-    await mongoose.connect('mongodb://root:root@localhost:27017', { dbName: 'demo' });
+    await mongoose.connect('mongodb://root:root@mongo1:27017/test?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false', { dbName: 'demo' });
 }

@@ -15,17 +15,23 @@ customProductSchema,
 "Products"
 );
 
-export const SinglProductCategory = model<SingleProductCategory>(
-  "customProduct",
-  singleProductCategorySchema,
-  "Products"
-);
+// test
+// const testCustom=new CustomProduct({
+// categories:[]
+// })
 
-export const MutliplProductCategory = SinglProductCategory.discriminator(
-  "customProduct",
-  quntifiableProductCategorySchema,
-  "Products"
-)
+
+// export const SinglProductCategory = model<SingleProductCategory>(
+//   "customProduct",
+//   singleProductCategorySchema,
+//   "Products"
+// );
+
+// export const MutliplProductCategory = SinglProductCategory.discriminator(
+//   "customProduct",
+//   quntifiableProductCategorySchema,
+//   "Products"
+// )
 
 // export const QuntifiablProductCategor = model<QuntifiableProductCategory>(
 //   "customProduct",
