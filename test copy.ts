@@ -4,7 +4,7 @@ const propertiesSchema = new Schema({
   },
   { discriminatorKey: 'type', _id: false });
   
-  const catalogSchema = new Schema({
+  const collectionSchema = new Schema({
     name: { type: String },
     properties: [propertiesSchema]
   });
