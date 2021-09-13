@@ -188,10 +188,11 @@ export const simpleProductSchema = new Schema<ProductSimpleDocument>(
  */
 const customProductCategorySchema = new Schema({
   name: { type:String, required:true },
-//   type: { type:String , enum:["single","multiple","quantifiable"], required:true },
+
+  category_type: { type:String , enum:["single","multiple","quantifiable"], required:true },
   isRequired: {type:Boolean, required:true },
   image: { type:String },
-}, { discriminatorKey: 'type', _id: false }); 
+}, { discriminatorKey: 'category_type', _id: false }); 
 
 /**
  * ----------------------
@@ -230,9 +231,14 @@ const categories:any = customProductSchema.path(`categories`);
 categories.discriminator(`multiple`,
  new Schema<{settings:object}>({ settings: {type:Object,required:true}  }, { _id: false })
 );
-const Collection = model('Collection', customProductSchema);
+
+export const SimpleProduct = model<ProductSimpleDocument>(
+  "Product",
+  simpleProductSchema,
+  "Products")
+const Collection = SimpleProduct.discriminator('Collection', customProductSchema);
 new Collection({
-    _id:11,
+    _id:13,
         type:"custom",
         seo:{
             title: "String",
@@ -254,18 +260,17 @@ new Collection({
         collectionIds: ["custom"],
     categories:[{
         name: "category name",
-        type:"single",
+        category_type:"single",
         isRequired: true,
-        image:""
+        image:"",
+     
        
     },{
         name: "category name", 
-        type:"multiple",
+        category_type:"multiple",
         isRequired: true,
-        image:""   ,
-        settings:{
-            min:1
-        }
+        image:""   
+       
     }]
 }).save((err,d)=>{
     console.log(err,d)
